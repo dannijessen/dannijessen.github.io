@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Er det fokustid?</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+    }
+
+    #message {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    #message.ja {
+      color: green;
+    }
+
+    #message.nej {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Er det fokustid?</h1>
+  <div id="message"></div>
+  <script>
+    const messageElement = document.getElementById('message');
+
+    function checkTime() {
+      const now = new Date();
+      const day = now.getDay();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+
+      const timeframes = [
+        {start: {hours: 8, minutes: 30}, end: {hours: 10, minutes: 30}},
+        {start: {hours: 13, minutes: 30}, end: {hours: 15, minutes: 0}},
+      ];
+
+      if (day >= 1 && day <= 5) {
+        for (const timeframe of timeframes) {
+          if (
+            (hours > timeframe.start.hours || (hours === timeframe.start.hours && minutes >= timeframe.start.minutes)) &&
+            (hours < timeframe.end.hours || (hours === timeframe.end.hours && minutes <= timeframe.end.minutes))
+          ) {
+            messageElement.innerText = "Ja!";
+            messageElement.className = "ja";
+            return;
+          }
+        }
+      }
+      messageElement.innerText = "Nej :-(";
+      messageElement.className = "nej";
+    }
+
+    checkTime();
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
