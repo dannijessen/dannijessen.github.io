@@ -23,11 +23,11 @@
     }
 
     #message.ja {
-      color: red;
+      color: green;
     }
 
     #message.nej {
-      color: green;
+      color: red;
     }
   </style>
 </head>
@@ -55,13 +55,13 @@
             (hours > timeframe.start.hours || (hours === timeframe.start.hours && minutes >= timeframe.start.minutes)) &&
             (hours < timeframe.end.hours || (hours === timeframe.end.hours && minutes <= timeframe.end.minutes))
           ) {
-            messageElement.innerText = "Ja :-( Hvor er livet bare forfærdeligt.";
+            messageElement.innerText = "Ja :-)";
             messageElement.className = "ja";
             return;
           }
         }
       }
-      messageElement.innerText = "Nej :-) Hvor er livet bare fantastisk.";
+      messageElement.innerText = "Nej :-(";
       messageElement.className = "nej";
     }
 
